@@ -25,9 +25,12 @@ public class HelloWorldControllerTest {
 		RequestBuilder request = MockMvcRequestBuilders
 				.get("/hello-world")
 				.accept(MediaType.APPLICATION_JSON);
-		
+
 		MvcResult result = mockMvc.perform(request)
+				// status kodun 200 oldugunu yoxluyur
 				.andExpect(status().isOk())
+
+				// burda da gozlenilen result un Hello World oldugunu qeyd eliyir.
 				.andExpect(content().string("Hello World"))
 				.andReturn();
 	

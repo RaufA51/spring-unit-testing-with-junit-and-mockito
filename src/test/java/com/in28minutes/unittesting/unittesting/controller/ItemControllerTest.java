@@ -34,12 +34,22 @@ public class ItemControllerTest {
 		RequestBuilder request = MockMvcRequestBuilders
 				.get("/dummy-item")
 				.accept(MediaType.APPLICATION_JSON);
-		
+
+		// burda cavabin  asagidaki kimi qayidacagini teleb eliyir
+		// eger burda noqte json yox string yazsan onda bosluq falan olduqda da fail eliyir
+		// .andExpect(content().string("{\"id\":  1,\"name\":\"Ball\",\"price\":10,\"quantity\":100}"))  bu halda xeta verecek
 		MvcResult result = mockMvc.perform(request)
+				// isOk() evezine basqalarini da yaza bilersen
+				// 200 - SUCCESS
+				// 404 - RESOURCE NOT FOUND
+				// 400 - BAD REQUEST
+				// 201 - CREATED
+				// 401 - UNAUTHORIZED
+				// 500 - SERVER ERROR
 				.andExpect(status().isOk())
-				.andExpect(content().json("{\"id\": 1,\"name\":\"Ball\",\"price\":10,\"quantity\":100}"))
+				.andExpect(content().json("{\"id\":  1,\"name\":\"Ball\",\"price\":10,\"quantity\":100}"))
 				.andReturn();
-		//JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+		// JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
 		
 	}
 
